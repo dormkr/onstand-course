@@ -1,6 +1,6 @@
 # Week 16: Open-source PR #1
 
-**8–14 February 2027 · Block C · Outline**
+**Block C · Outline**
 
 ## Why this week exists
 

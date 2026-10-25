@@ -1,6 +1,6 @@
 # Week 11: Checkpoint 1: mock interview, portfolio, retro
 
-**4–10 January 2027 · Block B · Outline**
+**Block B · Outline**
 
 ## Why this week exists
 
@@ -12,7 +12,8 @@ Ten weeks in, you need an outside measurement. Your own rubric scores have drift
 2. **Mock coding interview with a real engineer.** Options: [interviewing.io mocks](https://interviewing.io/mocks) (paid, with engineers from large companies); [Pramp](https://www.pramp.com/) (free, peer-to-peer); or an engineer from your network or a community ([JUCE forum](https://forum.juce.com/), The Audio Programmer Discord, Nairobi developer groups). Ask for a 45-minute easy/medium problem, no AI, and **their written score using their own rubric** (hire / lean hire / lean no hire / no hire, plus a reason).
 3. **Re-take diagnostic sections B and E** (fresh problems: write five new prediction questions about code you've changed since week 0, and do two new NeetCode easy/medium problems timed). Compare with week 0 in the build log.
 4. **Portfolio v0.** A README for OnStand (replace the Lovable template, which still says "Welcome to your Lovable project"): what it is, architecture in one diagram, how to run, test and deploy, the ADR list, the incident list, and the benchmark. A recruiter-readable version comes in week 30. This one is for engineers.
-5. **Retro.** In the build log: what worked in weeks 1–10, what didn't, the three habits you'll keep, and one you'll change. Look at your hours and slip history honestly.
+5. **Start applying, slowly.** Because the Band A plan moved week 17 to mid-March, send the first 3 tailored applications this week (new-grad roles that start after July 2027), so the pipeline is already open when week 17's sprint begins.
+6. **Retro.** In the build log: what worked in weeks 1–10, what didn't, the three habits you'll keep, and one you'll change. Look at your hours and slip history honestly.
 
 ## The week-11 decision point (from the direction call)
 

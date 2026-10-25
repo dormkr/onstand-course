@@ -1,6 +1,6 @@
 # Week 29: DSA intensive II and timed mocks
 
-**10–16 May 2027 · Block E · Outline**
+**Block E · Outline**
 
 ## Tasks
 

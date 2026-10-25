@@ -1,6 +1,6 @@
 # Week 10: Onsets and tempo
 
-**28 December 2026 – 3 January 2027 · Block B · Outline**
+**Block B · Outline**
 
 ## Why this week exists
 

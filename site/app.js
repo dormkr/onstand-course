@@ -23,17 +23,24 @@ const today = () => new Date(Date.now() + course.utcOffsetHours * 3600_000).toIS
 const fmtDay = (s) => new Date(dayNum(s) * DAY_MS).toLocaleDateString("en-GB", { weekday: "short", day: "numeric", month: "short", timeZone: "UTC" });
 const fmtLong = (s) => new Date(dayNum(s) * DAY_MS).toLocaleDateString("en-GB", { weekday: "long", day: "numeric", month: "long", year: "numeric", timeZone: "UTC" });
 
-function weekRange(n) {
-  if (n === 0) return { start: course.week0Start, end: addDays(course.startDate, -1) };
-  const start = addDays(course.startDate, 7 * (n - 1));
+// Weeks run in course.json order: the first is week 0 (week0Start to the day before startDate), and every
+// later entry, Foundations weeks F1–F4 included, takes the next calendar week from startDate.
+function weekRange(w) {
+  const i = course.weeks.indexOf(w);
+  if (i === 0) return { start: course.week0Start, end: addDays(course.startDate, -1) };
+  const start = addDays(course.startDate, 7 * (i - 1));
   return { start, end: addDays(start, 6) };
 }
 
-function currentWeekNumber(day = today()) {
-  if (dayNum(day) < dayNum(course.startDate)) return 0;
-  const n = Math.floor((dayNum(day) - dayNum(course.startDate)) / 7) + 1;
-  return Math.min(n, course.weeks[course.weeks.length - 1].n);
+function currentWeek(day = today()) {
+  if (dayNum(day) < dayNum(course.startDate)) return course.weeks[0];
+  const i = Math.floor((dayNum(day) - dayNum(course.startDate)) / 7) + 1;
+  return course.weeks[Math.min(i, course.weeks.length - 1)];
 }
+
+const weekByKey = (key) => course.weeks.find((w) => String(w.n) === String(key));
+/** "Week 3", or "Foundations F2" for the Band A weeks. */
+const weekName = (w) => (typeof w.n === "number" ? `Week ${w.n}` : `Foundations ${w.n}`);
 
 // ---------- storage ----------
 
@@ -83,7 +90,7 @@ const clampScore = (v) => (Number.isFinite(Number(v)) ? Math.min(20, Math.max(0,
 // ---------- derived progress ----------
 
 function weekStatus(w, day = today()) {
-  const { start, end } = weekRange(w.n);
+  const { start, end } = weekRange(w);
   const ids = w.gates.map((g) => g.id);
   const passed = ids.filter((id) => state.gates[id]).length;
   const all = ids.length > 0 && passed === ids.length;
@@ -214,11 +221,10 @@ function newerSeedNotice() {
 
 function viewToday() {
   const day = today();
-  const n = currentWeekNumber(day);
-  const w = course.weeks.find((x) => x.n === n);
+  const w = currentWeek(day);
   const ws = weekStatus(w, day);
   const { level, late, gap } = behindLevel(day);
-  const wk = weekRange(n);
+  const wk = weekRange(w);
   const hours = minutesBetween(wk.start, wk.end) / 60;
   const totalGates = course.weeks.reduce((a, x) => a + x.gates.length, 0);
   const passedGates = Object.keys(state.gates).filter((id) => course.weeks.some((x) => x.gates.some((g) => g.id === id))).length;
@@ -232,10 +238,10 @@ function viewToday() {
     <p class="muted small">${esc(fmtLong(day))} · EAT</p>
     ${levelBanner}
     <section class="card">
-      <div class="week-head">Week ${n} · ${esc(fmtDay(ws.start))} to ${esc(fmtDay(ws.end))} ${pill(ws.status)}</div>
-      <h2><a href="#/week/${n}">${esc(w.title)}</a></h2>
+      <div class="week-head">${weekName(w)} · ${esc(fmtDay(ws.start))} to ${esc(fmtDay(ws.end))} ${pill(ws.status)}</div>
+      <h2><a href="#/week/${w.n}">${esc(w.title)}</a></h2>
       <p class="small">${ws.passed} of ${ws.total} gate items passed. ${ws.status === "passed" ? "This week's gate is done." : ws.daysLeft >= 0 ? `Due ${esc(fmtDay(ws.end))}, 23:59 EAT: <strong>${ws.daysLeft === 0 ? "today" : `${ws.daysLeft} day${ws.daysLeft === 1 ? "" : "s"} left`}</strong>.` : ""}</p>
-      ${lateWeeks.length ? `<p class="small">Late: ${lateWeeks.map((x) => `<a href="#/week/${x.n}">week ${x.n}</a>`).join(", ")}. Late gates come before new content.</p>` : ""}
+      ${lateWeeks.length ? `<p class="small">Late: ${lateWeeks.map((x) => `<a href="#/week/${x.n}">${weekName(x).toLowerCase()}</a>`).join(", ")}. Late gates come before new content.</p>` : ""}
     </section>
     <div class="grid">
       <div class="stat"><div class="label">Streak</div><div class="value">${streak(day)}</div><div class="sub">days of ≥${STREAK_MINUTES} min</div></div>
@@ -302,15 +308,15 @@ function recentCheckins(day, n) {
 
 function viewCourse() {
   const day = today();
-  const cur = currentWeekNumber(day);
+  const cur = currentWeek(day);
   let html = `${seedNotice()}<div class="prose"><h1>Course</h1>
-    <p>36 weeks, ${esc(fmtDay(course.startDate))} 2026 to ${esc(fmtDay(course.endDate))} 2027, plus week 0. Weeks 1–4 are written in full; later weeks are complete outlines (sources, tasks, gates) for you to expand. Start with the <a href="#/direction">direction call</a> and the <a href="#/diagnostic">diagnostic</a>.</p></div>`;
+    <p>${esc(fmtLong(course.week0Start))} to ${esc(fmtLong(course.endDate))}: week 0, the Foundations weeks (Band A), then weeks 1–36 in calendar order. Foundations and weeks 1–4 are written in full; later weeks are complete outlines (sources, tasks, gates) for you to expand. Start with the <a href="#/direction">direction call</a> and the <a href="#/diagnostic">diagnostic</a>.</p></div>`;
   for (const b of course.blocks) {
     const weeks = course.weeks.filter((w) => w.block === b.id);
     html += `<h2 class="block-title">${b.id === "0" ? "" : `Block ${esc(b.id)}: `}${esc(b.title)}</h2><ul class="weeks">`;
     for (const w of weeks) {
       const s = weekStatus(w, day);
-      html += `<li class="${w.n === cur ? "current" : ""}"><span class="n">${String(w.n).padStart(2, "0")}</span>
+      html += `<li class="${w === cur ? "current" : ""}"><span class="n">${String(w.n).padStart(2, "0")}</span>
         <span><a href="#/week/${w.n}">${esc(w.title)}</a><br><span class="meta">${esc(fmtDay(s.start))} – ${esc(fmtDay(s.end))} · ${s.passed}/${s.total} gate items${w.depth === "outline" ? " · outline" : ""}</span></span>
         ${pill(s.status)}</li>`;
     }
@@ -319,26 +325,26 @@ function viewCourse() {
   main.innerHTML = html;
 }
 
-async function viewWeek(n) {
-  const w = course.weeks.find((x) => x.n === n);
+async function viewWeek(key) {
+  const w = weekByKey(key);
   if (!w) return viewNotFound();
   const s = weekStatus(w);
-  main.innerHTML = `${seedNotice()}<div class="week-head">Week ${n} · Block ${esc(w.block)} · ${esc(fmtDay(s.start))} to ${esc(fmtDay(s.end))} · due 23:59 EAT ${pill(s.status)} <a href="#gate">Jump to the gate</a></div><div id="md"><p class="muted">Loading…</p></div><section class="card" id="gate"></section><div class="pager" id="pager"></div>`;
+  main.innerHTML = `${seedNotice()}<div class="week-head">${weekName(w)} · Block ${esc(w.block)} · ${esc(fmtDay(s.start))} to ${esc(fmtDay(s.end))} · due 23:59 EAT ${pill(s.status)} <a href="#gate">Jump to the gate</a></div><div id="md"><p class="muted">Loading…</p></div><section class="card" id="gate"></section><div class="pager" id="pager"></div>`;
   renderGatePanel(w);
-  const prev = course.weeks.find((x) => x.n === n - 1), next = course.weeks.find((x) => x.n === n + 1);
-  document.getElementById("pager").innerHTML = `${prev ? `<a href="#/week/${prev.n}">← Week ${prev.n}</a>` : "<span></span>"}${next ? `<a href="#/week/${next.n}">Week ${next.n} →</a>` : ""}`;
+  const i = course.weeks.indexOf(w), prev = course.weeks[i - 1], next = course.weeks[i + 1];
+  document.getElementById("pager").innerHTML = `${prev ? `<a href="#/week/${prev.n}">← ${weekName(prev)}</a>` : "<span></span>"}${next ? `<a href="#/week/${next.n}">${weekName(next)} →</a>` : ""}`;
   try {
     const md = await fetchText(w.file);
     document.getElementById("md").replaceChildren(renderMarkdown(md));
   } catch {
-    document.getElementById("md").innerHTML = `<div class="prose"><h1>Week ${n}: ${esc(w.title)}</h1><p class="muted">This page hasn't been written yet (<code>site/${esc(w.file)}</code>). Use the outline template in the README to expand it.</p></div>`;
+    document.getElementById("md").innerHTML = `<div class="prose"><h1>${weekName(w)}: ${esc(w.title)}</h1><p class="muted">This page hasn't been written yet (<code>site/${esc(w.file)}</code>). Use the outline template in the README to expand it.</p></div>`;
   }
 }
 
 function renderGatePanel(w) {
   const box = document.getElementById("gate");
   const s = weekStatus(w);
-  let html = `<h2>Gate: week ${w.n}</h2><p class="small muted">${s.passed}/${s.total} passed. An item counts only with evidence: a public URL (PR, CI run, video, post) or a commit hash. Week ${w.n} is due ${esc(fmtDay(s.end))} 23:59 EAT.</p><ul class="gates">`;
+  let html = `<h2>Gate: ${weekName(w).toLowerCase()}</h2><p class="small muted">${s.passed}/${s.total} passed. An item counts only with evidence: a public URL (PR, CI run, video, post) or a commit hash. ${weekName(w)} is due ${esc(fmtDay(s.end))} 23:59 EAT.</p><ul class="gates">`;
   for (const g of w.gates) {
     const p = state.gates[g.id];
     const late = p && dayNum(p.passedAt) > dayNum(s.end);
@@ -457,15 +463,14 @@ function logDraftCard() {
 
 function draftLogEntry() {
   const day = today();
-  const n = currentWeekNumber(day);
-  const w = course.weeks.find((x) => x.n === n);
+  const w = currentWeek(day);
   const s = weekStatus(w, day);
-  const r = weekRange(n);
+  const r = weekRange(w);
   const hours = (minutesBetween(r.start, r.end) / 60).toFixed(1);
   const { level } = behindLevel(day);
   const passed = w.gates.filter((g) => state.gates[g.id]).map((g) => `  - ${g.text}: ${state.gates[g.id].evidence}`).join("\n") || "  - none";
   const open = w.gates.filter((g) => !state.gates[g.id]).map((g) => `  - ${g.text}: <why>`).join("\n") || "  - none";
-  const text = `## Week ${String(n).padStart(2, "0")}: ${w.title} · ${day}
+  const text = `## ${typeof w.n === "number" ? `Week ${String(w.n).padStart(2, "0")}` : weekName(w)}: ${w.title} · ${day}
 
 - **Hours:** ${hours} (floor ${WEEKLY_FLOOR_HOURS}) · **Streak:** ${streak(day)} day${streak(day) === 1 ? "" : "s"} · **Status:** ${level < 0 ? "on track" : LEVELS[level].name}
 - **Gates passed (${s.passed}/${s.total}):**
@@ -508,7 +513,7 @@ async function route() {
   window.scrollTo(0, 0);
   if (!name) viewToday();
   else if (name === "course") viewCourse();
-  else if (name === "week") await viewWeek(Number(arg));
+  else if (name === "week") await viewWeek(decodeURIComponent(arg || ""));
   else if (name === "tracker") viewTracker();
   else await viewPage(name);
   document.getElementById("foot-status").textContent =

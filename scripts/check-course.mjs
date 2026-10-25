@@ -12,7 +12,13 @@ const problems = [];
 
 const routes = new Set(["", "course", "tracker", ...course.pages.map((p) => p.slug), ...course.weeks.map((w) => `week/${w.n}`)]);
 
-course.weeks.forEach((w, i) => { if (w.n !== i) problems.push(`week numbering: expected ${i}, found ${w.n}`); });
+// Calendar order is the array order. Numbered weeks must cover 0..N exactly once (a buffer week may be moved to where
+// a holiday falls); other keys (F1–F4) may sit anywhere after week 0; no key may repeat.
+const keys = course.weeks.map((w) => String(w.n));
+keys.forEach((k, i) => { if (keys.indexOf(k) !== i) problems.push(`duplicate week key ${k}`); });
+const numbered = course.weeks.filter((w) => typeof w.n === "number").map((w) => w.n).sort((a, b) => a - b);
+numbered.forEach((n, i) => { if (n !== i) problems.push(`week numbers must be 0..${numbered.length - 1} with none missing; found ${n}`); });
+if (course.weeks[0].n !== 0) problems.push("week 0 must come first");
 
 const seen = new Set();
 for (const w of course.weeks) {
@@ -51,4 +57,4 @@ if (problems.length) {
   console.error(problems.map((p) => `✗ ${p}`).join("\n"));
   process.exit(1);
 }
-console.log(`✓ course.json: ${course.weeks.length} weeks, ${seen.size} gate items, all pages present and linked correctly`);
+console.log(`✓ course.json: ${course.weeks.length} weeks (incl. Foundations), ${seen.size} gate items, all pages present and linked correctly`);

@@ -1,6 +1,6 @@
 # Week 35: Music-tech company deep dives
 
-**21–27 June 2027 · Block E · Outline**
+**Block E · Outline**
 
 ## Why this week exists
 

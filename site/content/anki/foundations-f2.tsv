@@ -1,0 +1,13 @@
+#separator:tab
+#html:true
+#tags column:3
+Closure	A function together with the variables from the scope it was created in; it can still read and change them after that scope has returned.	f2 js
+Order: <code>log(1); setTimeout(()=>log(2)); Promise.resolve().then(()=>log(3)); log(4)</code>	1, 4, 3, 2. Synchronous code first, then microtasks (promises), then macrotasks (timers).	f2 js
+Microtask vs macrotask	Microtasks (promise callbacks, queueMicrotask) all run right after the current script, before the next macrotask (setTimeout, events, I/O).	f2 js
+Why doesn't <code>setTimeout(f, 0)</code> run f immediately?	It queues a macrotask; f runs only after the current code and all pending microtasks finish (and browsers clamp nested timers to ≥ 4 ms).	f2 js
+debounce vs throttle	debounce: run once, after calls stop for ms. throttle: run at most once every ms while calls continue.	f2 js
+Why must memoize use <code>Map.has</code>?	A cached result can be falsy (0, "", false); checking truthiness would recompute it every time.	f2 js
+<code>[1, 2, 3].map((x, i) => x * i)</code>	[0, 2, 6]	f2 js
+Why can't the metronome use setInterval for clicks?	JS timers drift and get delayed or throttled by the main thread and background tabs; clicks must be scheduled on the audio clock (AudioContext.currentTime), with JS timers only waking up to schedule ahead.	f2 onstand
+Fake timers in Vitest	<code>vi.useFakeTimers()</code>, then <code>vi.advanceTimersByTime(ms)</code> moves time forward deterministically; restore with <code>vi.useRealTimers()</code>.	f2 testing
+Call stack	The stack of functions currently running; each call pushes a frame and each return pops it. The event loop takes a new task only when it's empty.	f2 js

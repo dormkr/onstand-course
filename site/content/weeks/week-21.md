@@ -1,6 +1,6 @@
 # Week 21: Beat tracking
 
-**15–21 March 2027 · Block D · Outline**
+**Block D · Outline**
 
 ## Why this week exists
 

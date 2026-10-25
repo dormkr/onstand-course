@@ -1,6 +1,6 @@
 # Week 24: Capstone: play to notation
 
-**5–11 April 2027 · Block D · Outline**
+**Block D · Outline**
 
 ## Why this week exists
 

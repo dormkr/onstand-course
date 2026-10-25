@@ -1,6 +1,6 @@
 # Week 31: Real usage data from onstand.app
 
-**24–30 May 2027 · Block E · Outline**
+**Block E · Outline**
 
 ## Why this week exists
 

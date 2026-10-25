@@ -1,6 +1,6 @@
 # Week 14: JUCE: a native tuner plugin
 
-**25–31 January 2027 · Block C · Outline**
+**Block C · Outline**
 
 ## Why this week exists
 

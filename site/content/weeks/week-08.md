@@ -1,6 +1,6 @@
 # Week 8: Performance: profiling and budgets
 
-**14–20 December 2026 · Block B · Outline**
+**Block B · Outline**
 
 ## Why this week exists
 

@@ -1,6 +1,6 @@
 # Week 6: Clocks, latency and jitter: the metronome measured
 
-**30 November – 6 December 2026 · Block B · Outline**
+**Block B · Outline**
 
 ## Why this week exists
 

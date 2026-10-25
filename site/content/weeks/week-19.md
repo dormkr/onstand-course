@@ -1,6 +1,6 @@
 # Week 19: Notation models: MusicXML and rendering
 
-**1–7 March 2027 · Block D · Outline**
+**Block D · Outline**
 
 ## Why this week exists
 

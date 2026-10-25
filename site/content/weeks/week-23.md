@@ -1,6 +1,6 @@
 # Week 23: Rhythm quantization II: probabilistic models
 
-**29 March – 4 April 2027 · Block D · Outline**
+**Block D · Outline**
 
 ## Why this week exists
 

@@ -19,7 +19,7 @@ try {
 
 const bundle = JSON.parse(Buffer.from(readFileSync(`sealed/${name}.b64`, "utf8").replace(/\s/g, ""), "base64").toString("utf8"));
 for (const [path, content] of Object.entries(bundle)) {
-  if (path.endsWith(".md")) { console.log(content); continue; }
+  if (path.endsWith("key.md")) { console.log(content); continue; } // answer keys are printed, never left on disk
   mkdirSync(dirname(path), { recursive: true });
   writeFileSync(path, content);
   console.log(`wrote ${path}`);

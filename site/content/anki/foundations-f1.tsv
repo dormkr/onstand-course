@@ -1,0 +1,17 @@
+#separator:tab
+#html:true
+#tags column:3
+<code>"5" + 3</code> / <code>"5" - 3</code> / <code>"5" * "2"</code>	"53" (+ with a string concatenates) · 2 · 10 (− and * convert to numbers)	f1 js
+<code>==</code> vs <code>===</code>	=== compares without type conversion; == converts first. <code>0 == ""</code> is true, <code>0 === ""</code> is false. Use ===.	f1 js
+<code>null ?? "x"</code>, <code>0 ?? "x"</code>, <code>0 || "x"</code>	"x", 0, "x". ?? only replaces null/undefined; || replaces any falsy value.	f1 js
+Falsy values in JavaScript	false, 0, -0, 0n, "", null, undefined, NaN. Everything else is truthy (including "0", [], {}).	f1 js
+<code>let a = {n: 1}; let b = a; b.n = 2;</code> What is a.n?	2. Objects are assigned by reference: a and b point to the same object.	f1 js
+<code>Math.round(2.5)</code> and <code>Math.round(-2.5)</code>	3 and -2 (rounds half towards +∞).	f1 js
+<code>-1 % 4</code> in JavaScript	-1. The remainder takes the sign of the dividend; that's why <code>clickAt</code> does <code>((p % n) + n) % n</code>.	f1 js onstand
+<code>0.1 + 0.2 === 0.3</code>?	false (0.30000000000000004). Compare floats with a tolerance; clickAt uses 1e-9.	f1 js
+Predict-then-run	Write down what the code will print BEFORE running it. Every miss is a misconception found.	f1 method
+Variable table (trace)	One column per variable, one row per step; write each new value as it changes. Makes the program's state visible.	f1 method
+MIDI note number of A4, and its frequency	69, 440 Hz. Each semitone multiplies the frequency by 2^(1/12).	f1 music
+MIDI 60	C4 (middle C), about 261.63 Hz. Octave number = ⌊midi/12⌋ − 1.	f1 music
+Cents between two frequencies f and g	1200 · log₂(f/g). 100 cents = one semitone.	f1 music
+What does <code>clickAt(5.5, 4)</code> return?	{ position: 1.5, beat: 1 (beat 2), kind: "sub" }	f1 onstand

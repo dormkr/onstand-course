@@ -1,6 +1,6 @@
 # Week 4: Pitch detection, measured: YIN against MPM
 
-**16–22 November 2026 · Block A: Own the codebase · Gate due Sunday 22 November, 23:59 EAT**
+**Block A: Own the codebase**
 
 ## Why this week exists
 

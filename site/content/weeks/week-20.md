@@ -1,6 +1,6 @@
 # Week 20: From pitch track to notes
 
-**8–14 March 2027 · Block D · Outline**
+**Block D · Outline**
 
 ## Why this week exists
 

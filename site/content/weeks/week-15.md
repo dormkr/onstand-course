@@ -1,6 +1,6 @@
 # Week 15: Filters: biquads and the tuner's front end
 
-**1–7 February 2027 · Block C · Outline**
+**Block C · Outline**
 
 ## Why this week exists
 

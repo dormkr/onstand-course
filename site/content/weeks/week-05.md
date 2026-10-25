@@ -1,6 +1,6 @@
 # Week 5: AudioWorklet and the real-time thread
 
-**23–29 November 2026 · Block B: Real-time and production · Outline: expand it before you start (see README, "Extending")**
+**Block B: Real-time and production · Outline: expand it before you start (see README, "Extending")**
 
 ## Why this week exists
 

@@ -1,6 +1,6 @@
 # Week 36: Final review: evidence audit and what's next
 
-**28 June – 4 July 2027 · Block E · Outline**
+**Block E · Outline**
 
 ## Tasks
 

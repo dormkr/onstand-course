@@ -1,6 +1,6 @@
 # Week 26: Buffer and checkpoint 3
 
-**19–25 April 2027 · Block D · Outline**
+**Block D · Outline**
 
 ## Use this week for
 

@@ -1,6 +1,6 @@
 # Week 12: C++ for audio developers
 
-**11–17 January 2027 · Block C: Systems and native · Outline**
+**Block C: Systems and native · Outline**
 
 ## Why this week exists
 

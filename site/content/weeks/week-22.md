@@ -1,6 +1,6 @@
 # Week 22: Rhythm quantization I: grids and costs
 
-**22–28 March 2027 · Block D · Outline**
+**Block D · Outline**
 
 ## Why this week exists
 

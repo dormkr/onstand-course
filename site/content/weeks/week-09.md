@@ -1,6 +1,6 @@
 # Week 9: Buffer (holidays)
 
-**21–27 December 2026 · Block B · No new content**
+**Block B · No new content**
 
 This week is deliberately empty. Plans without slack break at the first illness, power outage or family trip, and broken plans get abandoned. Christmas in Nairobi is real life. Use the week for that.
 

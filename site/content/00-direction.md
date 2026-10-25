@@ -135,3 +135,14 @@ You asked me to change anything that falls below my standard. Here's the list:
 - Moises internships: <https://startup.jobs/phd-research-internships-music-generation-source-separation-and-enhancement-music-information-retrieval-moises-7650288>
 - Kenyan pay (low-confidence): <https://mctaba.com/blog/software-engineer-salary-in-kenya-in-2026-the-honest-guide>, <https://www.payscale.com/research/KE/Job=Junior_Software_Engineer/Salary>
 - OnStand facts: `git log` in `On-The-Stand` (724 commits counted 20 Oct 2026), `src/lib/pitch.ts`, `handoff.md`.
+
+---
+
+## Addendum: 25 October 2026 (re-plan)
+
+You chose Band A before the diagnostic: four Foundations weeks (F1–F4, 26 Oct – 22 Nov) before Week 1, which now starts 23 November 2026. Everything after moves by four weeks, and the course now ends on **1 August 2027, about a month after graduation**. The holiday buffer moved to 21–27 December, where Christmas falls.
+
+What that changes about the call above: nothing about the direction; one thing about timing. Week 17's application sprint is now mid-March 2027. That's still fine for new-grad roles starting after July, but late for summer internships. So the first applications move earlier: three at week 11 (early February). If you pass F4 with room to spare, you can take any later week's gate early and win time back.
+
+The honest part, said once: choosing the slower start because you know you're rusty is the right instinct. The risk isn't the four weeks. It's treating Foundations as a comfortable place to stay. The F4 gate (re-take ≥ 24/40) is the exit, and it has a deadline like every other gate.
+

@@ -1,6 +1,6 @@
 # Week 3: Sound as numbers: the DFT, the FFT, and testing audio end to end
 
-**9–15 November 2026 · Block A: Own the codebase · Gate due Sunday 15 November, 23:59 EAT**
+**Block A: Own the codebase**
 
 ## Why this week exists
 

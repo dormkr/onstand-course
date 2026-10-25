@@ -1,6 +1,6 @@
 # Week 30: Portfolio and case studies
 
-**17–23 May 2027 · Block E · Outline**
+**Block E · Outline**
 
 ## Why this week exists
 

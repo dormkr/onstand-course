@@ -1,6 +1,6 @@
 # Week 7: Observability: errors, releases, and usage you can trust
 
-**7–13 December 2026 · Block B · Outline**
+**Block B · Outline**
 
 ## Why this week exists
 

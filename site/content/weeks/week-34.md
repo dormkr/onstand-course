@@ -1,6 +1,6 @@
 # Week 34: Applications sprint II and follow-ups
 
-**14–20 June 2027 · Block E · Outline**
+**Block E · Outline**
 
 ## Tasks (14 h)
 

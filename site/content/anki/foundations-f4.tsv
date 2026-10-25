@@ -1,0 +1,11 @@
+#separator:tab
+#html:true
+#tags column:3
+Working tree / index / commit	Working tree: your files. Index (staging area): what the next commit will contain (git add). Commit: a saved snapshot.	f4 git
+<code>git switch -c name</code>	Creates a branch called name at the current commit and switches to it.	f4 git
+Conflict markers	<<<<<<< your side, ======= separator, >>>>>>> their side. Edit the file to the right result, delete the markers, git add, commit.	f4 git
+<code>git restore f</code> vs <code>git restore --staged f</code>	The first discards working-tree changes to f; the second unstages f (keeps the changes in the working tree).	f4 git
+<code>new Date("2026-10-01")</code> vs <code>new Date(2026, 9, 1)</code>	The first is UTC midnight (shows as 30 Sept west of UTC); the second is local midnight. Months are 0-based in the constructor.	f4 dates
+Deterministic test	Same result on every run: no randomness, no real clock, no network, no shared state between tests.	f4 testing
+<code>toBe</code> vs <code>toEqual</code>	toBe: Object.is (same primitive value or same object). toEqual: deep structural equality.	f4 testing
+<code>git log --oneline --graph --all</code>	One line per commit, all branches, drawn as a graph: the fastest way to see where you are.	f4 git

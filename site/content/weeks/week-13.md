@@ -1,6 +1,6 @@
 # Week 13: WebAssembly in the AudioWorklet
 
-**18–24 January 2027 · Block C · Outline**
+**Block C · Outline**
 
 ## Why this week exists
 

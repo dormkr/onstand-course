@@ -1,6 +1,6 @@
 # Week 28: DSA intensive I
 
-**3–9 May 2027 · Block E · Outline**
+**Block E · Outline**
 
 ## Why this week exists
 

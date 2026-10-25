@@ -1,6 +1,6 @@
 # Week 27: System design for juniors
 
-**26 April – 2 May 2027 · Block E: Getting hired · Outline**
+**Block E: Getting hired · Outline**
 
 ## Why this week exists
 

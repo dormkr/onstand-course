@@ -1,6 +1,6 @@
 # OnStand Engineering Course
 
-A self-running, 36-week engineering course (26 Oct 2026 → 4 Jul 2027, plus a diagnostic week 0). It takes you from "knows the basics" to a junior engineering hiring bar, specializing in **music software on the web platform, with music information retrieval as the edge**. [OnStand](https://onstand.app) is the lab: every week ships real, tested, reviewed changes to it.
+A self-running engineering course: a diagnostic week 0, four Foundations weeks for Band A, then 36 weeks (26 Oct 2026 → 1 Aug 2027 on the current plan; `site/course.json` is the source of truth for dates). It takes you from "knows the basics" to a junior engineering hiring bar, specializing in **music software on the web platform, with music information retrieval as the edge**. [OnStand](https://onstand.app) is the lab: every week ships real, tested, reviewed changes to it.
 
 The course is a static website (Markdown content, a progress tracker in the browser), a set of AI-free labs with failing test suites, and a set of rules for running it alone.
 
@@ -11,7 +11,7 @@ The course is a static website (Markdown content, a progress tracker in the brow
 1. **Read the [direction call](site/content/00-direction.md).** Whether this path is right for you, which specialization, and the kill criteria.
 2. **Read the [rules](site/content/rules.md)**, especially the AI policy (§2) and what happens when you fall behind (§5).
 3. **Take the [diagnostic](site/content/00-diagnostic.md)** before Sunday 25 October 2026. Your band decides where you start.
-4. **Week 1** starts Monday 26 October 2026.
+4. **Foundations F1** starts Monday 26 October 2026 (Band A, chosen 25 October). Week 1 follows on 23 November.
 
 ---
 

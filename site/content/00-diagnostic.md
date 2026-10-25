@@ -2,7 +2,9 @@
 
 **Purpose:** to set your baseline against a real junior hiring bar, on OnStand's actual code. Your score decides where the course starts for you (see [Scoring and bands](#scoring-and-bands)).
 
-**Deadline:** Sunday 25 October 2026, 23:59 EAT. Week 1 starts Monday 26 October either way.
+**Deadline:** Sunday 25 October 2026, 23:59 EAT.
+
+> **25 October 2026: Band A chosen.** You chose to start with the Foundations block instead of taking the full diagnostic, because you know your fundamentals are rusty. That's a legitimate call, and an honest one. What's *not* optional is a baseline number: without one, nothing in the course can show you improved. So sections **B and E** (about 90 minutes) are taken at the start of F1, under the rules below, and scored with the sealed key. F4 re-takes a fresh, sealed version of them and compares the two. Sections A, C and D are re-scheduled: you'll meet the same tasks in weeks 1–2, by which point they'll measure something.
 
 **Time:** about 4½ hours, in two sittings.
 

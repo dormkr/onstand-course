@@ -1,6 +1,6 @@
 # Week 32: Applications sprint I
 
-**31 May – 6 June 2027 · Block E · Outline**
+**Block E · Outline**
 
 ## Why this week exists
 

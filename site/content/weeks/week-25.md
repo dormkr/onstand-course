@@ -1,6 +1,6 @@
 # Week 25: Open-source PR #2
 
-**12–18 April 2027 · Block D · Outline**
+**Block D · Outline**
 
 ## Why this week exists
 

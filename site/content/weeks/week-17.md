@@ -1,6 +1,6 @@
 # Week 17: Checkpoint 2, buffer, and applications begin
 
-**15–21 February 2027 · Block C · Outline**
+**Block C · Outline**
 
 ## Why this week exists
 

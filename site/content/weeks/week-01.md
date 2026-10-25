@@ -1,6 +1,6 @@
 # Week 1: Reading code you didn't write; tests you can trust
 
-**26 October – 1 November 2026 · Block A: Own the codebase · Gate due Sunday 1 November, 23:59 EAT**
+**Block A: Own the codebase**
 
 ## Why this week exists
 

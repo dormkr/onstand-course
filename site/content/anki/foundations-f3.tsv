@@ -1,0 +1,12 @@
+#separator:tab
+#html:true
+#tags column:3
+<code>type</code> vs <code>interface</code>	Both describe object shapes. Interfaces can be extended and merged; type aliases can also name unions, primitives and tuples. Pick one convention and be consistent.	f3 ts
+Discriminated union	A union whose members share a literal field (e.g. ok: true | ok: false) that TypeScript uses to narrow the type.	f3 ts
+<code>never</code> in an exhaustive switch	In the default branch, assign the value to a variable of type never: if a new union member is added and not handled, it no longer fits never → compile error.	f3 ts
+Why return a Result instead of throwing?	The failure is part of the type, so callers must handle it; exceptions are invisible in signatures and easy to forget.	f3 ts
+<code>unknown</code> vs <code>any</code>	any switches type checking off. unknown accepts anything but forces you to narrow (check its type) before using it.	f3 ts
+Dependency injection	Passing a component its collaborators (e.g. a MixerContext) instead of creating them inside, so tests can pass in fakes.	f3 design onstand
+Leap year rule	Divisible by 4, except centuries, except every 400 years. 1900: no. 2000: yes. 2028: yes.	f3 dates
+<code>resume?(): Promise&lt;void&gt;</code>	An optional method: implementations may leave it out, so callers write <code>ctx.resume?.()</code>.	f3 ts
+<code>private readonly</code>	Only the class can see the field, and it can't be reassigned after construction (its contents can still change).	f3 ts

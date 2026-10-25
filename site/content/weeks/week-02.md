@@ -1,6 +1,6 @@
 # Week 2: CI, repo hygiene and your first incident
 
-**2–8 November 2026 · Block A: Own the codebase · Gate due Sunday 8 November, 23:59 EAT**
+**Block A: Own the codebase**
 
 ## Why this week exists
 

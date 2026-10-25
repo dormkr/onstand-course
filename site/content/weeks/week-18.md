@@ -1,6 +1,6 @@
 # Week 18: MIDI: the protocol and the file format
 
-**22–28 February 2027 · Block D: Music data, notation and quantization · Outline**
+**Block D: Music data, notation and quantization · Outline**
 
 **AI policy changes from this week** ([Rules §2](#/rules)): in labs, AI is allowed *after* your own first version, and declared. Gates, DSA and mock prep stay AI-free.
 

@@ -1,6 +1,6 @@
 # Week 33: Take-homes and pairing interviews
 
-**7–13 June 2027 · Block E · Outline**
+**Block E · Outline**
 
 ## Why this week exists
 
