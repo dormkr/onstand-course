@@ -1,0 +1,19 @@
+#separator:tab
+#html:true
+#tags column:3
+Why is a test that passes 19 times in 20 worse than one that always fails?	It is <b>non-deterministic</b>: a failure can't be reproduced, so it teaches people to re-run and ignore red. A consistently failing test points at a cause.	w01 testing
+What is a characterization test?	A test that pins down what code <i>currently</i> does (not what it should do), written before changing code you don't fully understand. (Feathers)	w01 testing
+Two reasons a file listed in .gitignore can still be tracked	1. The file was committed before the ignore rule (ignore never affects tracked files; use <code>git rm --cached</code>). 2. The pattern doesn't match, e.g. written as UTF-16 so git sees NUL bytes.	w01 git
+What does <code>x &gt;&gt;&gt; 0</code> do in JavaScript? What is <code>-1 &gt;&gt;&gt; 0</code>?	Converts to an unsigned 32-bit integer. <code>-1 &gt;&gt;&gt; 0 = 4294967295</code>.	w01 js
+Why use <code>Math.imul(a, b)</code> instead of <code>a * b</code> for 32-bit hashing/PRNGs?	<code>a * b</code> is a float64 multiply: products above 2^53 lose low bits. <code>Math.imul</code> gives the exact low 32 bits of the integer product, like C.	w01 js
+What is modulo bias?	<code>r % n</code> over a range whose size isn't a multiple of n makes small results more likely. E.g. r in 0..7 (8 values), n = 3: 0 and 1 occur 3 times each, 2 only twice. Fix: reject the uneven tail and redraw.	w01 random
+Box–Muller transform (basic form)	For independent uniforms u1 in (0,1], u2 in [0,1): z = sqrt(-2 ln u1) · cos(2π u2) is standard normal. u1 must not be 0 (ln 0 = -∞).	w01 random
+Ring buffer: what is the write index after pushing 6 samples into capacity 4 (starting at 0)?	6 mod 4 = <b>2</b>. The buffer holds [5,6,3,4] in storage order; the oldest-first view is [3,4,5,6].	w01 dsa
+Why does pitch.ts zero-pad to ≥ 2N before the FFT autocorrelation?	The FFT computes <b>circular</b> correlation; without padding, lags wrap around and alias. Padding to ≥ 2N makes circular equal linear for all lags &lt; N.	w01 dsp onstand
+NSDF definition (McLeod)	n(τ) = 2·r(τ) / m(τ), where r is the autocorrelation and m(τ) = Σ (x_j² + x_{j+τ}²) over the overlap. It lies in [-1, 1], with 1 = perfectly periodic at lag τ.	w01 dsp onstand
+Why does MPM pick the <i>first</i> key maximum ≥ k·highest (k = 0.9 in OnStand), not the highest?	Peaks at 2× and 3× the period can be as high as (or higher than) the true one. The highest would read an octave or more <b>low</b>. The first strong one is the fundamental period.	w01 dsp onstand
+What does a DC offset do to the NSDF, and what is the minimal fix?	It adds roughly c² to every lag, pushing the NSDF towards +1: it never crosses zero, so no key maxima are found → null. Fix: subtract the window mean before the energy sums and the FFT.	w01 dsp onstand
+Sine RMS from amplitude	RMS = A / √2 ≈ 0.707 A.	w01 dsp
+Bug fix vs product decision	A bug: the code contradicts an intent everyone agrees on (300 BPM from a bounced tap). A decision: reasonable people could want different behaviour (drop short stretches or not), so it gets an ADR.	w01 process
+ADR sections (Nygard)	Title, Status, Context, Decision, Consequences (including the negative ones you accept).	w01 process
+The "red commit" in test-first bug fixing	A commit containing only the new failing test. It proves the test can fail, i.e. that it actually detects the bug, before the fix lands.	w01 testing

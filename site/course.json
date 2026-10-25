@@ -1,0 +1,305 @@
+{
+  "title": "OnStand Engineering Course",
+  "owner": "Dor",
+  "timezone": "Africa/Nairobi",
+  "utcOffsetHours": 3,
+  "week0Start": "2026-10-20",
+  "startDate": "2026-10-26",
+  "endDate": "2027-07-04",
+  "repoUrl": "https://github.com/dormkr/onstand-course",
+  "onstandRepoUrl": "https://github.com/dormkr/On-The-Stand",
+  "pages": [
+    { "slug": "direction", "title": "Direction call", "file": "content/00-direction.md" },
+    { "slug": "diagnostic", "title": "Diagnostic", "file": "content/00-diagnostic.md" },
+    { "slug": "rules", "title": "Rules", "file": "content/rules.md" },
+    { "slug": "rubrics", "title": "Rubrics", "file": "content/rubrics.md" },
+    { "slug": "foundations", "title": "Foundations (Band A)", "file": "content/foundations.md" },
+    { "slug": "sources", "title": "Source library", "file": "content/sources.md" },
+    { "slug": "log", "title": "Build log", "file": "log/BUILD_LOG.md" }
+  ],
+  "blocks": [
+    { "id": "0", "title": "Baseline" },
+    { "id": "A", "title": "Own the codebase" },
+    { "id": "B", "title": "Real-time and production" },
+    { "id": "C", "title": "Systems and native" },
+    { "id": "D", "title": "Music data, notation and quantization" },
+    { "id": "E", "title": "Getting hired" }
+  ],
+  "weeks": [
+    {
+      "n": 0, "block": "0", "title": "Diagnostic and setup", "file": "content/00-diagnostic.md", "depth": "full",
+      "gates": [
+        { "id": "w00.diag", "kind": "rubric", "text": "Diagnostic taken under the rules, answers committed before unsealing, scored with the key" },
+        { "id": "w00.deploy", "kind": "external", "text": "Course repo public on GitHub and deployed on Cloudflare Pages (evidence: the URL)" },
+        { "id": "w00.log", "kind": "external", "text": "Week 0 build-log entry with score and band, committed and pushed" }
+      ]
+    },
+    {
+      "n": 1, "block": "A", "title": "Reading code you didn't write; tests you can trust", "file": "content/weeks/week-01.md", "depth": "full",
+      "gates": [
+        { "id": "w01.dc", "kind": "test", "text": "DC-offset fix merged in OnStand with the diagnostic's failing test now passing" },
+        { "id": "w01.det", "kind": "test", "text": "pitch.test.ts deterministic: seeded PRNG, 20 consecutive runs identical (evidence: PR)" },
+        { "id": "w01.tap", "kind": "test", "text": "tapTempo bounce bug fixed test-first (evidence: PR showing the red commit, then the green)" },
+        { "id": "w01.adr", "kind": "rubric", "text": "ADR-0001 'short practice stretches' scores ≥4 and its decision is implemented with tests" },
+        { "id": "w01.lab", "kind": "test", "text": "Lab: prng + ring buffer, visible and hidden tests pass, code quality 2/2" },
+        { "id": "w01.rec", "kind": "recording", "text": "Recording: pitch.ts detect() explained with no notes, rubric ≥4, published" },
+        { "id": "w01.quiz", "kind": "quiz", "text": "Retrieval quiz ≥80%, Anki deck imported and reviewed daily" }
+      ]
+    },
+    {
+      "n": 2, "block": "A", "title": "CI, repo hygiene and your first incident", "file": "content/weeks/week-02.md", "depth": "full",
+      "gates": [
+        { "id": "w02.ci", "kind": "external", "text": "GitHub Actions CI (install, typecheck, lint ratchet, test, build) green on a PR, and red on a deliberately broken PR" },
+        { "id": "w02.protect", "kind": "external", "text": "Branch protection on main requires CI, verified with the gh api command in the week's page" },
+        { "id": "w02.env", "kind": "test", "text": ".env untracked, .gitignore fixed, the check-env CI step fails if any .env file is committed" },
+        { "id": "w02.inc", "kind": "rubric", "text": "INC-0001 (.env committed) scores ≥4 on the incident rubric" },
+        { "id": "w02.lab", "kind": "test", "text": "Lab: mini test runner + deepEqual, visible and hidden tests pass" },
+        { "id": "w02.rec", "kind": "recording", "text": "Recording: the metronome scheduler explained with no notes, rubric ≥4" },
+        { "id": "w02.quiz", "kind": "quiz", "text": "Retrieval quiz ≥80%" }
+      ]
+    },
+    {
+      "n": 3, "block": "A", "title": "Sound as numbers: the DFT, the FFT, and testing audio end to end", "file": "content/weeks/week-03.md", "depth": "full",
+      "gates": [
+        { "id": "w03.lab", "kind": "test", "text": "Lab: DFT, radix-2 FFT and WAV writer from a blank file, visible and hidden tests pass" },
+        { "id": "w03.bench", "kind": "bench", "text": "Benchmark: your FFT at N=4096 is ≥50× faster than your DFT, and within 3× of OnStand's FFT" },
+        { "id": "w03.e2e", "kind": "test", "text": "Playwright E2E: fake microphone plays your generated A4 WAV, tuner shows A within ±5 cents, runs in CI" },
+        { "id": "w03.rec", "kind": "recording", "text": "Recording: the FFT on a whiteboard (butterflies, bit reversal, why N log N), rubric ≥4" },
+        { "id": "w03.quiz", "kind": "quiz", "text": "Retrieval quiz ≥80%" }
+      ]
+    },
+    {
+      "n": 4, "block": "A", "title": "Pitch detection, measured: YIN against MPM", "file": "content/weeks/week-04.md", "depth": "full",
+      "gates": [
+        { "id": "w04.yin", "kind": "test", "text": "Lab: YIN from the paper, from a blank file, visible and hidden tests pass" },
+        { "id": "w04.bench", "kind": "bench", "text": "Benchmark harness in OnStand: YIN meets the targets on the synthetic corpus; MPM vs YIN report scores ≥4" },
+        { "id": "w04.real", "kind": "bench", "text": "Real-audio evaluation on NSynth flute/bass/keyboard subset + 20 of your own flute recordings" },
+        { "id": "w04.adr", "kind": "rubric", "text": "ADR-0003 'which pitch detector ships' scores ≥4, decided from the data" },
+        { "id": "w04.rec", "kind": "recording", "text": "Recording: YIN's six steps closed-book, with why each exists, rubric ≥4" },
+        { "id": "w04.ext", "kind": "external", "text": "First monthly external review: one recording or PR scored by a working engineer" },
+        { "id": "w04.kill", "kind": "rubric", "text": "Week-4 decision point recorded in the build log (Direction call → kill criteria)" }
+      ]
+    },
+    {
+      "n": 5, "block": "B", "title": "AudioWorklet and the real-time thread", "file": "content/weeks/week-05.md", "depth": "outline",
+      "gates": [
+        { "id": "w05.worklet", "kind": "test", "text": "Tuner capture runs in an AudioWorklet feeding a lock-free ring buffer; tests pass" },
+        { "id": "w05.alloc", "kind": "test", "text": "process() allocates nothing: the allocation-counting test passes" },
+        { "id": "w05.adr", "kind": "rubric", "text": "ADR: SharedArrayBuffer + cross-origin isolation vs postMessage, decided with measurements" },
+        { "id": "w05.rec", "kind": "recording", "text": "Recording: why the audio thread must never block, rubric ≥4" }
+      ]
+    },
+    {
+      "n": 6, "block": "B", "title": "Clocks, latency and jitter: the metronome measured", "file": "content/weeks/week-06.md", "depth": "outline",
+      "gates": [
+        { "id": "w06.jitter", "kind": "bench", "text": "Metronome timing measured from an OfflineAudioContext render: p99 click error ≤ 1 sample at any tempo 20–300" },
+        { "id": "w06.latency", "kind": "bench", "text": "Round-trip latency measured on two real devices with a loopback method; report ≥4" },
+        { "id": "w06.tone", "kind": "rubric", "text": "Written comparison of OnStand's scheduler with Tone.js Clock/Ticker/TickSource" }
+      ]
+    },
+    {
+      "n": 7, "block": "B", "title": "Observability: errors, releases, and usage you can trust", "file": "content/weeks/week-07.md", "depth": "outline",
+      "gates": [
+        { "id": "w07.monitor", "kind": "external", "text": "Error monitoring live in production with releases and source maps uploaded from CI" },
+        { "id": "w07.events", "kind": "external", "text": "Privacy-respecting product events (tuner start success, detection rate) collecting for week 31" },
+        { "id": "w07.inc", "kind": "rubric", "text": "INC-0002 from a real production error caught by monitoring, ≥4" }
+      ]
+    },
+    {
+      "n": 8, "block": "B", "title": "Performance: profiling and budgets", "file": "content/weeks/week-08.md", "depth": "outline",
+      "gates": [
+        { "id": "w08.bundle", "kind": "bench", "text": "Initial JS for /dashboard reduced by ≥40% (gzip), measured before/after" },
+        { "id": "w08.lhci", "kind": "external", "text": "Lighthouse CI with budgets runs on every PR" },
+        { "id": "w08.react", "kind": "bench", "text": "Tuner render cost profiled; re-renders per second cut to what the display needs" }
+      ]
+    },
+    {
+      "n": 9, "block": "B", "title": "Buffer (holidays)", "file": "content/weeks/week-09.md", "depth": "outline",
+      "gates": [
+        { "id": "w09.caught", "kind": "rubric", "text": "Every earlier gate passed, or a level-2 slip report written" }
+      ]
+    },
+    {
+      "n": 10, "block": "B", "title": "Onsets and tempo", "file": "content/weeks/week-10.md", "depth": "outline",
+      "gates": [
+        { "id": "w10.lab", "kind": "test", "text": "Lab: spectral-flux onset detector from a blank file, tests pass" },
+        { "id": "w10.f", "kind": "bench", "text": "Onset F-measure ≥0.85 (±50 ms) on your labelled flute set; report ≥4" },
+        { "id": "w10.rec", "kind": "recording", "text": "Recording: onset detection functions compared, rubric ≥4" }
+      ]
+    },
+    {
+      "n": 11, "block": "B", "title": "Checkpoint 1: mock interview, portfolio, retro", "file": "content/weeks/week-11.md", "depth": "outline",
+      "gates": [
+        { "id": "w11.mock", "kind": "external", "text": "Mock coding interview with a real engineer, scored with their rubric (decision point)" },
+        { "id": "w11.rediag", "kind": "rubric", "text": "Diagnostic sections B and E re-taken; score compared with week 0 in the build log" },
+        { "id": "w11.power", "kind": "external", "text": "Interview infrastructure tested: power backup + mobile-data fallback on a video call" }
+      ]
+    },
+    {
+      "n": 12, "block": "C", "title": "C++ for audio developers", "file": "content/weeks/week-12.md", "depth": "outline",
+      "gates": [
+        { "id": "w12.spsc", "kind": "test", "text": "Lab: SPSC lock-free ring buffer in C++ with tests (Catch2), ASan/TSan clean" },
+        { "id": "w12.rec", "kind": "recording", "text": "Recording: RAII, ownership and why no allocation on the audio thread, rubric ≥4" }
+      ]
+    },
+    {
+      "n": 13, "block": "C", "title": "WebAssembly in the AudioWorklet", "file": "content/weeks/week-13.md", "depth": "outline",
+      "gates": [
+        { "id": "w13.wasm", "kind": "test", "text": "Your C++ YIN compiled to WASM, running in OnStand's worklet behind a flag, tests pass" },
+        { "id": "w13.bench", "kind": "bench", "text": "JS vs WASM benchmark report ≥4, and an ADR on whether to ship it" }
+      ]
+    },
+    {
+      "n": 14, "block": "C", "title": "JUCE: a native tuner plugin", "file": "content/weeks/week-14.md", "depth": "outline",
+      "gates": [
+        { "id": "w14.plugin", "kind": "test", "text": "JUCE tuner plugin (VST3 + standalone) passes pluginval at strictness 5" },
+        { "id": "w14.ci", "kind": "external", "text": "CMake build of the plugin in GitHub Actions on at least two OSes" }
+      ]
+    },
+    {
+      "n": 15, "block": "C", "title": "Filters: biquads and the tuner's front end", "file": "content/weeks/week-15.md", "depth": "outline",
+      "gates": [
+        { "id": "w15.lab", "kind": "test", "text": "Lab: RBJ biquad from the cookbook, frequency-response tests pass" },
+        { "id": "w15.hp", "kind": "bench", "text": "High-pass front end vs mean removal on rumble + DC test signals, ADR ≥4" }
+      ]
+    },
+    {
+      "n": 16, "block": "C", "title": "Open source PR #1", "file": "content/weeks/week-16.md", "depth": "outline",
+      "gates": [
+        { "id": "w16.pr", "kind": "external", "text": "A PR merged into a real open-source music project (evidence: merged PR URL)" }
+      ]
+    },
+    {
+      "n": 17, "block": "C", "title": "Checkpoint 2, buffer, and applications begin", "file": "content/weeks/week-17.md", "depth": "outline",
+      "gates": [
+        { "id": "w17.mock", "kind": "external", "text": "Mock interview #2 with a real engineer" },
+        { "id": "w17.apps", "kind": "external", "text": "First 10 tailored applications sent (internships and new-grad), tracked in the pipeline" },
+        { "id": "w17.decision", "kind": "rubric", "text": "Week-17 decision point recorded" }
+      ]
+    },
+    {
+      "n": 18, "block": "D", "title": "MIDI: the protocol and the file format", "file": "content/weeks/week-18.md", "depth": "outline",
+      "gates": [
+        { "id": "w18.smf", "kind": "test", "text": "Lab: Standard MIDI File parser from a blank file, tests pass on the provided corpus" },
+        { "id": "w18.webmidi", "kind": "test", "text": "Web MIDI input in OnStand (behind a flag) with a hardware or virtual device" }
+      ]
+    },
+    {
+      "n": 19, "block": "D", "title": "Notation models: MusicXML and rendering", "file": "content/weeks/week-19.md", "depth": "outline",
+      "gates": [
+        { "id": "w19.model", "kind": "test", "text": "Your note/measure model round-trips a MusicXML subset; tests pass" },
+        { "id": "w19.render", "kind": "test", "text": "Rendered in OnStand with VexFlow or OSMD; Playwright visual test" }
+      ]
+    },
+    {
+      "n": 20, "block": "D", "title": "From pitch track to notes", "file": "content/weeks/week-20.md", "depth": "outline",
+      "gates": [
+        { "id": "w20.seg", "kind": "bench", "text": "Note segmentation from your pitch track: note-level F-measure on your flute set, report ≥4" },
+        { "id": "w20.ml", "kind": "bench", "text": "basic-pitch running in the browser, evaluated against your segmenter on the same data" }
+      ]
+    },
+    {
+      "n": 21, "block": "D", "title": "Beat tracking", "file": "content/weeks/week-21.md", "depth": "outline",
+      "gates": [
+        { "id": "w21.lab", "kind": "test", "text": "Lab: Ellis dynamic-programming beat tracker from a blank file, tests pass" },
+        { "id": "w21.eval", "kind": "bench", "text": "Beat F-measure reported on labelled recordings, report ≥4" }
+      ]
+    },
+    {
+      "n": 22, "block": "D", "title": "Rhythm quantization I: grids and costs", "file": "content/weeks/week-22.md", "depth": "outline",
+      "gates": [
+        { "id": "w22.lab", "kind": "test", "text": "Lab: grid quantizer with a cost function over candidate grids, tests pass" },
+        { "id": "w22.muse", "kind": "rubric", "text": "Written walkthrough of MuseScore's importmidi_quant.cpp, ≥4 on the explanation rubric" }
+      ]
+    },
+    {
+      "n": 23, "block": "D", "title": "Rhythm quantization II: probabilistic models", "file": "content/weeks/week-23.md", "depth": "outline",
+      "gates": [
+        { "id": "w23.hmm", "kind": "test", "text": "Lab: HMM metrical quantizer with Viterbi decoding, tests pass" },
+        { "id": "w23.bench", "kind": "bench", "text": "HMM vs grid quantizer on the same performances, report ≥4" }
+      ]
+    },
+    {
+      "n": 24, "block": "D", "title": "Capstone: play to notation", "file": "content/weeks/week-24.md", "depth": "outline",
+      "gates": [
+        { "id": "w24.demo", "kind": "external", "text": "Play flute into OnStand → engraved notation, deployed behind a flag, demo video published" },
+        { "id": "w24.report", "kind": "bench", "text": "End-to-end evaluation report ≥4, written up as a public case study" }
+      ]
+    },
+    {
+      "n": 25, "block": "D", "title": "Open source PR #2", "file": "content/weeks/week-25.md", "depth": "outline",
+      "gates": [
+        { "id": "w25.pr", "kind": "external", "text": "A PR merged into MuseScore, aubio, Audacity, OSMD or another notation/MIR project" }
+      ]
+    },
+    {
+      "n": 26, "block": "D", "title": "Buffer and checkpoint 3", "file": "content/weeks/week-26.md", "depth": "outline",
+      "gates": [
+        { "id": "w26.decision", "kind": "rubric", "text": "Week-26 decision point (callbacks) recorded" },
+        { "id": "w26.caught", "kind": "rubric", "text": "All earlier gates passed, or a re-plan committed" }
+      ]
+    },
+    {
+      "n": 27, "block": "E", "title": "System design for juniors", "file": "content/weeks/week-27.md", "depth": "outline",
+      "gates": [
+        { "id": "w27.design", "kind": "rubric", "text": "Two design docs: OnStand offline sync, and a collaborative score service; reviewed by an engineer" }
+      ]
+    },
+    {
+      "n": 28, "block": "E", "title": "DSA intensive I", "file": "content/weeks/week-28.md", "depth": "outline",
+      "gates": [
+        { "id": "w28.dsa", "kind": "test", "text": "15 problems, timed, mediums at ≤35 minutes, written solutions in the DSA repo" }
+      ]
+    },
+    {
+      "n": 29, "block": "E", "title": "DSA intensive II and timed mocks", "file": "content/weeks/week-29.md", "depth": "outline",
+      "gates": [
+        { "id": "w29.mocks", "kind": "external", "text": "Two timed mock interviews with real engineers, both 'hire' or better" }
+      ]
+    },
+    {
+      "n": 30, "block": "E", "title": "Portfolio and case studies", "file": "content/weeks/week-30.md", "depth": "outline",
+      "gates": [
+        { "id": "w30.cases", "kind": "rubric", "text": "Three case studies published (tuner benchmark, quantization capstone, an incident)" },
+        { "id": "w30.review", "kind": "external", "text": "CV and portfolio reviewed by two working engineers; changes made" }
+      ]
+    },
+    {
+      "n": 31, "block": "E", "title": "Real usage data from onstand.app", "file": "content/weeks/week-31.md", "depth": "outline",
+      "gates": [
+        { "id": "w31.analysis", "kind": "rubric", "text": "Usage analysis from week-7 events, leading to one product change shipped and measured" }
+      ]
+    },
+    {
+      "n": 32, "block": "E", "title": "Applications sprint I", "file": "content/weeks/week-32.md", "depth": "outline",
+      "gates": [
+        { "id": "w32.apps", "kind": "external", "text": "30 tailored applications this sprint, ≥10 with a referral or a direct contact" }
+      ]
+    },
+    {
+      "n": 33, "block": "E", "title": "Take-homes and pairing interviews", "file": "content/weeks/week-33.md", "depth": "outline",
+      "gates": [
+        { "id": "w33.takehome", "kind": "rubric", "text": "Two practice take-homes done in the time box, reviewed against the PR rubric" },
+        { "id": "w33.mocks", "kind": "external", "text": "Mock interviews #5 and #6 (one pairing, one behavioural)" }
+      ]
+    },
+    {
+      "n": 34, "block": "E", "title": "Applications sprint II and follow-ups", "file": "content/weeks/week-34.md", "depth": "outline",
+      "gates": [
+        { "id": "w34.callbacks", "kind": "external", "text": "Callback rate measured and reported; follow-ups sent on every open application" }
+      ]
+    },
+    {
+      "n": 35, "block": "E", "title": "Music-tech company deep dives", "file": "content/weeks/week-35.md", "depth": "outline",
+      "gates": [
+        { "id": "w35.dossiers", "kind": "rubric", "text": "Dossiers on 5 target companies, each with a tailored artefact (a PR, a demo, or a write-up)" }
+      ]
+    },
+    {
+      "n": 36, "block": "E", "title": "Final review: evidence audit and what's next", "file": "content/weeks/week-36.md", "depth": "outline",
+      "gates": [
+        { "id": "w36.audit", "kind": "rubric", "text": "Final build-log entry: what you can do now, with links; next 6 months planned" }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "name": "onstand-course",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "A self-running engineering course built around OnStand: production web engineering plus real-time audio.",
+  "scripts": {
+    "serve": "node scripts/serve.mjs",
+    "lab": "vitest run --dir labs",
+    "lab:watch": "vitest --dir labs",
+    "check": "node scripts/check-course.mjs && node --check site/app.js",
+    "seal": "node scripts/seal.mjs",
+    "unseal": "node scripts/unseal.mjs"
+  },
+  "devDependencies": {
+    "marked": "^14.1.4",
+    "typescript": "^5.8.3",
+    "vitest": "^3.2.4"
+  }
+}

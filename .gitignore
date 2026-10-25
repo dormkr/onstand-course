@@ -1,0 +1,10 @@
+node_modules/
+.DS_Store
+*.log
+# Unsealed hidden tests are written next to labs; never commit them unsealed.
+labs/**/hidden.test.ts
+# Local recordings: publish them and link the URL instead.
+recordings/*.mp4
+recordings/*.m4a
+recordings/*.webm
+recordings/*.wav
