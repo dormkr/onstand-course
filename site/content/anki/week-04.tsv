@@ -1,0 +1,19 @@
+#separator:tab
+#html:true
+#tags column:3
+YIN step 1: the difference function	d(τ) = Σ<sub>j</sub> (x<sub>j</sub> − x<sub>j+τ</sub>)². A dip at τ means the signal repeats with period τ.	w04 dsp yin
+YIN step 2: cumulative mean normalised difference	d′(0) = 1; d′(τ) = d(τ) / [(1/τ) Σ<sub>j=1..τ</sub> d(j)]. It removes the dip at τ = 0 and the bias towards small lags, so one threshold works at every lag.	w04 dsp yin
+YIN step 3: absolute threshold	Take the <b>first</b> τ where d′ &lt; threshold (0.1 in the paper), then go to the bottom of that dip. Taking the global minimum instead invites errors at multiples of the period (octave too low).	w04 dsp yin
+YIN step 4: where to interpolate	Parabolic interpolation around the chosen τ on the <b>raw d(τ)</b>, not d′: d′'s normalisation biases the peak position. Measured: p95 0.07 ¢ (raw d) vs 0.85 ¢ (d′).	w04 dsp yin
+YIN vs MPM: which is 0 and which is 1 for a perfect period?	YIN's d′ dips to <b>0</b>; MPM's NSDF peaks at <b>1</b>.	w04 dsp
+Why is the difference function immune to DC offset?	(x<sub>j</sub> + c) − (x<sub>j+τ</sub> + c) = x<sub>j</sub> − x<sub>j+τ</sub>: the constant cancels in each difference. Plain autocorrelation Σx<sub>j</sub>x<sub>j+τ</sub> gains a c² term at every lag.	w04 dsp
+YIN-FFT: how do you make d(τ) O(N log N)?	d(τ) = Σx<sub>j</sub>² + Σx<sub>j+τ</sub>² − 2Σx<sub>j</sub>x<sub>j+τ</sub>: energy terms from prefix sums, the cross term (autocorrelation) from an FFT.	w04 dsp
+Raw pitch accuracy (mir_eval)	Among voiced reference frames, the share whose estimate is within ±50 cents of the truth.	w04 mir
+Voicing false alarm (mir_eval)	Among unvoiced reference frames, the share where the system reports a pitch.	w04 mir
+Raw chroma accuracy	Like raw pitch accuracy, but octave errors forgiven (pitch class within ±50 cents).	w04 mir
+Why report median and p95, not just the mean?	Errors are skewed: a few octave errors dominate a mean. Median = typical, p95 = how bad the tail is. Spread is what makes comparisons trustworthy.	w04 measurement
+Cents between f and g	1200 · log₂(f / g). 100 ¢ = one semitone; 1200 ¢ = an octave.	w04 dsp
+Latency of a 4096-sample window at 48 kHz	4096 / 48000 ≈ <b>85 ms</b> (plus the device's input latency).	w04 dsp onstand
+Minimum window for a 41.2 Hz note, with ≥ 2 periods	2 × 48000 / 41.2 ≈ 2330 samples at 48 kHz (OnStand uses 2.2 periods → 4096); at 16 kHz ≈ 777 samples.	w04 dsp
+Benchmark hygiene, in four words	Seeded, warmed, spread, reproducible.	w04 measurement
+Where does MPM's 0.9 × highest peak rule come from?	McLeod's thesis §6.3 (peak picking): k between about 0.8 and 1.0. Lower k prefers earlier (higher-pitch) peaks, higher k risks octave-low errors.	w04 dsp onstand

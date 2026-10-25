@@ -1,0 +1,19 @@
+#separator:tab
+#html:true
+#tags column:3
+Nyquist frequency at sample rate f<sub>s</sub>	f<sub>s</sub>/2. At 48 kHz: 24 kHz. Content above it aliases.	w03 dsp
+A 30 kHz tone sampled at 48 kHz with no anti-alias filter appears at…	48 − 30 = <b>18 kHz</b> (it folds back around the Nyquist frequency).	w03 dsp
+DFT definition	X[k] = Σ<sub>n=0</sub><sup>N−1</sup> x[n] · e<sup>−2πikn/N</sup>	w03 dsp
+DFT bin spacing	f<sub>s</sub> / N Hz per bin. 4096 points at 48 kHz → 11.72 Hz; bin k is at k·f<sub>s</sub>/N.	w03 dsp
+What is X[0]?	The sum of all samples: N × the mean (the DC component).	w03 dsp
+Real input → what symmetry in the DFT?	Conjugate symmetry: X[N−k] = conj(X[k]). Only bins 0…N/2 carry independent information.	w03 dsp
+A cosine of amplitude 1 exactly at bin k (0 < k < N/2): DFT magnitudes?	N/2 at bins k and N−k, 0 elsewhere.	w03 dsp
+Radix-2 FFT: why O(N log N)?	log₂N stages, each with N/2 butterflies of constant cost.	w03 dsp
+The butterfly	Given a, b and twiddle w = e<sup>−2πik/size</sup>: a' = a + w·b, b' = a − w·b.	w03 dsp
+Why bit reversal in an iterative FFT?	Decimation in time recursively splits into even and odd indices; doing that log₂N times leaves the inputs in bit-reversed order, so you permute first and combine in place.	w03 dsp
+Parseval (as the lab tests it)	Σ|x[n]|² = (1/N) Σ|X[k]|²	w03 dsp
+16-bit PCM quantisation step	1/32768 of full scale (about −90 dB).	w03 dsp
+Canonical WAV chunk order and tags	RIFF (size) WAVE · <code>fmt </code> (16 bytes for PCM) · data (size). Little-endian. Chunks of odd size are followed by one pad byte.	w03 audio
+Chromium flags for a fake microphone from a file	<code>--use-fake-ui-for-media-stream</code> (auto-allow) · <code>--use-fake-device-for-media-stream</code> · <code>--use-file-for-fake-audio-capture=/abs/path.wav</code>	w03 testing
+Why does pitch.ts use getFloatTimeDomainData, not the analyser's FFT?	It needs the raw samples to compute its own autocorrelation (NSDF) with sub-sample interpolation. The analyser's magnitude spectrum is smoothed, in dB, and limited to bin resolution.	w03 onstand
+E2E test waits: why expect.poll / toHaveText, not waitForTimeout?	Fixed sleeps are slow when things are fast and flaky when things are slow. Polling an assertion waits exactly as long as needed, up to a timeout.	w03 testing

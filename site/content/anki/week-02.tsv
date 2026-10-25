@@ -1,0 +1,18 @@
+#separator:tab
+#html:true
+#tags column:3
+Minimal GitHub Actions workflow skeleton	<pre>on: pull_request<br>jobs:<br>  checks:<br>    runs-on: ubuntu-latest<br>    steps:<br>      - uses: actions/checkout@v4<br>      - run: …</pre>	w02 ci
+<code>concurrency</code> + <code>cancel-in-progress: true</code>	A new run in the same concurrency group cancels the one still running, so only the latest push on a PR uses runners and reports status.	w02 ci
+Actions <i>variables</i> vs <i>secrets</i>	Variables are plain configuration, visible in logs. Secrets are encrypted and masked. Publishable values (e.g. <code>VITE_</code> keys that ship in the bundle anyway) → variables. Anything that grants privileges → secrets.	w02 ci security
+Why are <code>VITE_</code>-prefixed env vars never secret?	Vite inlines them into the client JavaScript bundle at build time; every visitor can read them.	w02 security
+Supabase publishable key vs secret (service-role) key	Publishable: safe in the browser; access is limited by Row Level Security. Secret/service-role: bypasses RLS; must only live on servers.	w02 security
+Lint ratchet	Record the current error count as a baseline; CI fails if the count goes up; lower the baseline whenever it goes down. Debt only ever shrinks, without a big-bang rewrite.	w02 process
+Blameless postmortem: what goes in it?	Summary, quantified impact, timeline from evidence, root cause past the first why, detection gap, action items with owners (including a systemic one), what went well.	w02 incidents
+Why is "human error" never a root cause?	It stops the analysis where it should start: ask why the system let a human make that error unnoticed, and fix the system.	w02 incidents
+<code>git rm --cached file</code>	Stops tracking the file (removes it from the index) but leaves it on disk. Needed because .gitignore never affects already-tracked files.	w02 git
+Object.is vs ===	<code>Object.is(NaN, NaN)</code> is true (=== false); <code>Object.is(0, -0)</code> is false (=== true). Otherwise the same.	w02 js
+How does a deep-equality check terminate on cycles?	Keep a map of (a, b) pairs already under comparison; meeting a pair again means "assume equal so far" instead of recursing forever.	w02 dsa
+Why must a test runner run tests in one file sequentially by default?	Tests share module-level state (e.g. a singleton store). Interleaving async tests would let one test's state leak into another's, causing order-dependent failures.	w02 testing
+"A Tale of Two Clocks": the two clocks	The JS timer (<code>setTimeout</code>/<code>setInterval</code>): imprecise, can be delayed or throttled. The audio clock (<code>AudioContext.currentTime</code>): sample-accurate. Schedule on the audio clock; use JS timers only to wake up and schedule ahead.	w02 audio onstand
+Metronome: why LOOKAHEAD (150 ms) ≫ SCHEDULER_INTERVAL (25 ms)?	So that if a wake-up is late (main thread busy), the next clicks are already scheduled on the audio clock. If they were equal, any delay in a wake-up would make a click late.	w02 audio onstand
+What does Web Audio do with <code>start(t)</code> when t is already in the past?	It starts immediately, so the sound is late by (currentTime − t).	w02 audio
